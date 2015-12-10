@@ -40,5 +40,4 @@ elapsed time: 400 millis
  
 Expected:
 1. Good working app covered with Junit tests
-2. analytics.txt file with the results of all 3 tasks done over input.txt file (from attachments), time comparisons of a parallel work and a non-parallel work.
-3. Do not forget to add input.txt file to your repo as well.
+2. Do not forget to add input.txt file to your repo as well.
