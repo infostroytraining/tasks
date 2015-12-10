@@ -16,4 +16,9 @@
       <listener-class>com.example.web.listener.ContextListener</listener-class>
   </listener>
   
+  <context-param>
+      <param-name>storage</param-name>
+      <param-value>db</param-value>
+  </context-param>
+  
 </web-app>
