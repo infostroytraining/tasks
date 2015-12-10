@@ -1,4 +1,4 @@
-package com.example;
+package com.example.web.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.dto.AnswerDTO;
+import com.example.entity.Answer;
+import com.example.service.AnswerService;
 
 public class MainServlet extends HttpServlet {
 
@@ -22,6 +24,9 @@ public class MainServlet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		AnswerService answerService = (AnswerService) req.getServletContext().getAttribute("answerService");
+
 		String name = req.getParameter("name");
 		String language = req.getParameter("language");
 		AnswerDTO answer = new AnswerDTO(name, language);
@@ -31,6 +36,8 @@ public class MainServlet extends HttpServlet {
 			req.setAttribute("errors", errors);
 			req.getRequestDispatcher("home.jsp").forward(req, resp);
 		} else {
+			answerService.add(new Answer(name, language));
+			req.setAttribute("statisticMap", answerService.getStatisticForEachAnswer());
 			req.setAttribute("name", name);
 			req.getRequestDispatcher("answer.jsp").forward(req, resp);
 		}

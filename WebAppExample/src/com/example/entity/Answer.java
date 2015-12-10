@@ -1,13 +1,22 @@
-package com.example.dto;
+package com.example.entity;
 
-public class AnswerDTO {
+public class Answer {
 
+	private int id;
 	private String name;
 	private String language;
-
-	public AnswerDTO(String name, String language) {
+	
+	public Answer(String name, String language) {
 		this.name = name;
 		this.language = language;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -25,4 +34,5 @@ public class AnswerDTO {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
+
 }
