@@ -10,12 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.example.dto.AnswerDTO;
 import com.example.entity.Answer;
-import com.example.service.MemoryAnswerService;
+import com.example.service.AnswerService;
 import com.example.service.exception.ServiceException;
 
 public class MainServlet extends HttpServlet {
+
+	private static final Logger log = LogManager.getLogger();
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,9 +30,7 @@ public class MainServlet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		MemoryAnswerService answerService = (MemoryAnswerService) req.getServletContext().getAttribute("answerService");
-
+		AnswerService answerService = (AnswerService) req.getServletContext().getAttribute("answerService");
 		String name = req.getParameter("name");
 		String language = req.getParameter("language");
 		AnswerDTO answer = new AnswerDTO(name, language);
@@ -39,10 +42,11 @@ public class MainServlet extends HttpServlet {
 		} else {
 			try {
 				answerService.add(new Answer(name, language));
+				req.setAttribute("statisticMap", answerService.getStatisticForEachAnswer());
 			} catch (ServiceException e) {
-				req.getRequestDispatcher("error.jsp");
+				log.error("Exception in servlet", e);
+				throw new ServletException(e);
 			}
-			req.setAttribute("statisticMap", answerService.getStatisticForEachAnswer());
 			req.setAttribute("name", name);
 			req.getRequestDispatcher("answer.jsp").forward(req, resp);
 		}

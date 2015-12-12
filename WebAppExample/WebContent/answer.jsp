@@ -5,7 +5,7 @@
 <title>Thank you</title>
 </head>
 <body>
-${name} , thanks for your answer!
+<b>${name}</b> , thanks for your answer!
 
 <p>
 	The most popular programming languages:

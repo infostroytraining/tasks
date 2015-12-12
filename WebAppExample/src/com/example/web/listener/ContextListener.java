@@ -19,9 +19,11 @@ public class ContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		ServletContext context = sce.getServletContext();
 		String storageMode = context.getInitParameter(STORAGE_INIT_PARAMETER);
+		
 		logger.debug("Try to initialize service for {} storage mode", storageMode);
 		AnswerService answerService = ServiceFactory.getAnswerService(storageMode);
 		logger.debug("service initialized. Service: {}", answerService);
+		
 		context.setAttribute("answerService", answerService);
 	}
 

@@ -1,9 +1,11 @@
 package com.example.service;
 
 import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.example.dao.AnswerDAO;
+import com.example.dao.exception.DAOException;
 import com.example.db.Transaction;
 import com.example.db.TransactionManager;
 import com.example.db.exception.TransactionException;
@@ -25,12 +27,16 @@ public class TransactionalAnswerService implements AnswerService {
 		try {
 			return transactionManager.doTask(new Transaction<Answer>() {
 				@Override
-				public Answer execute() {
+				public Answer execute() throws DAOException {
 					return answerDAO.create(answer);
 				}
 			}, Connection.TRANSACTION_READ_COMMITTED);
 		} catch (TransactionException e) {
 			throw new ServiceException(e);
 		}
+	}
+
+	public Map<String, Integer> getStatisticForEachAnswer() {
+		return new HashMap<>();
 	}
 }

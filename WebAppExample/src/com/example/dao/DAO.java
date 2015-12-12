@@ -2,9 +2,11 @@ package com.example.dao;
 
 import java.util.List;
 
+import com.example.dao.exception.DAOException;
+
 public interface DAO<T> {
 
-	T create(T entity);
+	T create(T entity) throws DAOException;
 
 	T get(int id);
 
@@ -12,5 +14,5 @@ public interface DAO<T> {
 
 	void remove(int id);
 
-	List<T> getAll();
+	List<T> getAll() throws DAOException;
 }

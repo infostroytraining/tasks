@@ -5,7 +5,7 @@ public class Answer {
 	private int id;
 	private String name;
 	private String language;
-	
+
 	public Answer(String name, String language) {
 		this.name = name;
 		this.language = language;
@@ -35,4 +35,8 @@ public class Answer {
 		this.language = language;
 	}
 
+	@Override
+	public String toString() {
+		return "Answer [id=" + id + ", name=" + name + ", language=" + language + "]";
+	}
 }
