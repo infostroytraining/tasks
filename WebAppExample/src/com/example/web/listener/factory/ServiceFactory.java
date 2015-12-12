@@ -1,5 +1,7 @@
 package com.example.web.listener.factory;
 
+import java.util.ServiceConfigurationError;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,15 +34,16 @@ public class ServiceFactory {
 			return initTransactionalService();
 		} else {
 			logger.fatal("Could initialize application with source type {}", type);
-			throw new IllegalArgumentException();
+			throw new ServiceConfigurationError("Could initialize application with source type [" + type + "]");
 		}
 	}
-	
-	private static void loadPostgreDriver(){
+
+	private static void loadPostgreDriver() {
 		try {
 			Class.forName(POSTGRE_DRIVER);
 		} catch (ClassNotFoundException e) {
-			// TODO handle exception
+			logger.fatal("Could load {} driver", POSTGRE_DRIVER);
+			throw new ServiceConfigurationError("Could load" + POSTGRE_DRIVER + "driver");
 		}
 	}
 
