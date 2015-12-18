@@ -18,6 +18,7 @@ import com.example.entity.Answer;
 public class PostgreAnswerDAO implements AnswerDAO {
 
 	private static final String INSERT_ANSWER = "INSERT INTO answers(name, language) values(?,?);";
+	private static final String SELECT_ALL_ANSWERS = "SELECT * FROM answers";
 
 	private static final Logger log = LogManager.getLogger();
 
@@ -35,7 +36,7 @@ public class PostgreAnswerDAO implements AnswerDAO {
 				answer.setId(generatedKeys.getInt(1));
 			}
 		} catch (SQLException ex) {
-			log.error("SQLException during answer insert query", ex);
+			log.error("SQLException during anser insert query", ex);
 			throw new DAOException(ex);
 		}
 		log.exit(answer);
@@ -57,17 +58,30 @@ public class PostgreAnswerDAO implements AnswerDAO {
 	@Override
 	public void remove(int id) {
 		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public List<Answer> getAll() throws DAOException {
-		// TODO Auto-generated method stub
+		log.entry();
+		Connection con = ConnectionHolder.getConnection();
+		try {
+			Statement statement = (Statement) con.createStatement();
+			ResultSet resultSet = statement.executeQuery(SELECT_ALL_ANSWERS);
+			while(resultSet.next()){
+				log.debug(resultSet.getString("name"));
+			}
+		} catch (SQLException ex) {
+			log.error("SQLException during anser insert query", ex);
+			throw new DAOException(ex);
+		}
+		log.exit();
 		return null;
 	}
 
 	@Override
 	public Answer getAnswerByUserName(String userName) {
-		
+		log.entry(userName);
 		return null;
 	}
 

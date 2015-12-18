@@ -2,8 +2,9 @@ package com.example.db;
 
 import com.example.dao.exception.DAOException;
 
+@FunctionalInterface
 public interface Transaction<T> {
 
-	public T execute() throws DAOException;
+	T execute() throws DAOException;
 
 }
