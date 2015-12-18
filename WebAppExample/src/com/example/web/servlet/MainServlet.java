@@ -35,7 +35,7 @@ public class MainServlet extends HttpServlet {
 		String language = req.getParameter("language");
 		AnswerDTO answer = new AnswerDTO(name, language);
 		List<String> errors = validateForm(answer);
-		if (!errors.isEmpty()) {
+		if (errors != null && !errors.isEmpty()) {
 			req.setAttribute("answer", answer);
 			req.setAttribute("errors", errors);
 			req.getRequestDispatcher("home.jsp").forward(req, resp);
@@ -60,7 +60,7 @@ public class MainServlet extends HttpServlet {
 		}
 
 		if (answer.getLanguage() == null || answer.getLanguage().isEmpty()) {
-			errors.add("Please, input your language");
+			errors.add("Please, input your language.");
 		}
 		return errors;
 	}
