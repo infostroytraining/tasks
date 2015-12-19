@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.google.common.io.Files;
-
 import example.filter.ExtentionFilter;
 import example.filter.Filter;
 import example.filter.NameFilter;
@@ -23,6 +21,7 @@ public class Demo {
 		File file = new File("D:\\filter");
 
 		List<File> files = Arrays.asList(file.listFiles());
+		
 		System.out.println(files);
 		List<File> result = new ArrayList<>();
 		for (File current : files) {
@@ -31,6 +30,5 @@ public class Demo {
 			}
 		}
 		System.out.println(result);
-
 	}
 }

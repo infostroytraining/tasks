@@ -5,10 +5,7 @@ import java.io.File;
 public abstract class Filter {
 
 	private Filter nextFilter;
-	
-	protected Filter() {
-	}
-	
+
 	protected Filter(Filter nextFilter){
 		this.nextFilter = nextFilter;
 	}
