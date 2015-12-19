@@ -1,13 +1,13 @@
 package com.example.web.servlet;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyList;
 import static org.mockito.Matchers.anyMap;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -23,14 +23,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.util.Strings;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import com.example.dto.AnswerDTO;
 import com.example.entity.Answer;
 import com.example.service.AnswerService;
 import com.example.service.exception.ServiceException;
 
+@RunWith(MockitoJUnitRunner.class)
 public class MainServletTest {
 
 	private static final String JAVA = "Java";
