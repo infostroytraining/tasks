@@ -2,6 +2,8 @@ package example.filter;
 
 import java.io.File;
 
+import com.google.common.io.Files;
+
 public class NameFilter extends Filter {
 
 	private String name;
@@ -14,8 +16,8 @@ public class NameFilter extends Filter {
 	@Override
 	public boolean currentAccept(File file) {
 		if (file != null){
-			String fileName = file.getName();
-			return name.startsWith(fileName);
+			String fileName = Files.getNameWithoutExtension(file.getName());
+			return fileName.startsWith(name);
 		}
 		return false;
 	}
