@@ -14,7 +14,18 @@
 		<servlet-name>Main</servlet-name>
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>
-	
+
+	<servlet>
+		<servlet-name>AddAnswer</servlet-name>
+		<servlet-class>com.example.web.servlet.AddAnswerServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AddAnswer</servlet-name>
+		<url-pattern>/add</url-pattern>
+	</servlet-mapping>
+
+
 	<servlet>
 		<servlet-name>RemoveAnswer</servlet-name>
 		<servlet-class>com.example.web.servlet.RemoveAnswerServlet</servlet-class>
@@ -38,8 +49,6 @@
 		<error-code>500</error-code>
 		<location>/error.jsp</location>
 	</error-page>
-	<welcome-file-list>
-		<welcome-file>hello</welcome-file>
-	</welcome-file-list>
+
 
 </web-app>
