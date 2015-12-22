@@ -24,6 +24,10 @@ public class AnswerStorage {
 		return answer;
 	}
 
+	public void remove(int id) {
+		storage.remove(id);
+	}
+
 	public List<Answer> all() {
 		return new ArrayList<Answer>(storage.values());
 	}

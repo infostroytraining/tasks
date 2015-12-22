@@ -12,7 +12,17 @@
 
 	<servlet-mapping>
 		<servlet-name>Main</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RemoveAnswer</servlet-name>
+		<servlet-class>com.example.web.servlet.RemoveAnswerServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RemoveAnswer</servlet-name>
+		<url-pattern>/remove</url-pattern>
 	</servlet-mapping>
 
 	<listener>
@@ -21,12 +31,15 @@
 
 	<context-param>
 		<param-name>storage</param-name>
-		<param-value>db</param-value>
+		<param-value>memory</param-value>
 	</context-param>
 
 	<error-page>
 		<error-code>500</error-code>
 		<location>/error.jsp</location>
 	</error-page>
-	
+	<welcome-file-list>
+		<welcome-file>hello</welcome-file>
+	</welcome-file-list>
+
 </web-app>

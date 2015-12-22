@@ -19,8 +19,12 @@ public class MemoryAnswerService implements AnswerService {
 		this.answerDAO = answerDAO;
 	}
 
-	public List<Answer> getAll() throws DAOException {
-		return answerDAO.getAll();
+	public List<Answer> getAll() throws ServiceException {
+		try {
+			return answerDAO.getAll();
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
 	}
 
 	@Override
@@ -45,26 +49,28 @@ public class MemoryAnswerService implements AnswerService {
 	public Map<String, Integer> getStatisticForEachAnswer() throws ServiceException {
 		Map<String, Integer> statisticMap = new HashMap<>();
 		Set<String> languages = new HashSet<>();
-		try {
-			for (Answer answer : getAll()) {
-				if (answer != null) {
-					languages.add(answer.getLanguage());
-				}
+
+		for (Answer answer : getAll()) {
+			if (answer != null) {
+				languages.add(answer.getLanguage());
 			}
-			for (String language : languages) {
-				int answersCount = 0;
-				if (language != null) {
-					for (Answer answer : getAll()) {
-						if (answer != null && language.equals(answer.getLanguage())) {
-							answersCount += 1;
-						}
-						statisticMap.put(language, answersCount);
+		}
+		for (String language : languages) {
+			int answersCount = 0;
+			if (language != null) {
+				for (Answer answer : getAll()) {
+					if (answer != null && language.equalsIgnoreCase(answer.getLanguage())) {
+						answersCount += 1;
 					}
+					statisticMap.put(language.toLowerCase(), answersCount);
 				}
 			}
-		} catch (DAOException e) {
-			throw new ServiceException(e);
 		}
 		return statisticMap;
+	}
+
+	@Override
+	public void remove(int id) throws ServiceException {
+		answerDAO.remove(id);
 	}
 }

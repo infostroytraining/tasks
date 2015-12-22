@@ -2,6 +2,7 @@ package com.example.service;
 
 import java.sql.Connection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.example.dao.AnswerDAO;
@@ -33,5 +34,17 @@ public class TransactionalAnswerService implements AnswerService {
 
 	public Map<String, Integer> getStatisticForEachAnswer() {
 		return new HashMap<>();
+	}
+
+	@Override
+	public List<Answer> getAll() throws ServiceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void remove(int id) throws ServiceException {
+		// TODO Auto-generated method stub
+		
 	}
 }

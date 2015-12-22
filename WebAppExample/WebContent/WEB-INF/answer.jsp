@@ -1,8 +1,10 @@
-<%@include file="WEB-INF/include/head.jsp" %>
+<%@include file="include/head.jsp" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Thank you</title>
+<link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="resources/js/bootstrap.js"></script>
 </head>
 <body>
 <b>${name}</b> , thanks for your answer!

@@ -33,8 +33,7 @@ public class MemoryAnswerDAO implements AnswerDAO {
 
 	@Override
 	public void remove(int id) {
-		// TODO Auto-generated method stub
-		
+		storage.remove(id);
 	}
 
 	@Override

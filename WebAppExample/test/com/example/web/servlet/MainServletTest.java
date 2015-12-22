@@ -13,6 +13,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -63,7 +64,7 @@ public class MainServletTest {
 	@Test
 	public void testDoGet() throws ServletException, IOException{
 		servlet.doGet(request, response);
-		verify(request).getRequestDispatcher("home.jsp");
+		verify(request).getRequestDispatcher("WEB-INF/home.jsp");
 	}
 	
 	@Test
@@ -94,20 +95,20 @@ public class MainServletTest {
 		mockGetRequestParams(Strings.EMPTY, Strings.EMPTY);
 		servlet.doPost(request, response);
 		verify(request).setAttribute(eq("answer"), any(Answer.class));
-		verify(request).setAttribute(eq("errors"), anyList());
+		verify(request).setAttribute(eq("errors"), anyMap());
 	}
 	
 	@Test
 	public void testValidateForm(){
 		AnswerDTO answer = new AnswerDTO(JOHN, JAVA);
-		List<String> result = servlet.validateForm(answer);
+		Map<String,String> result = servlet.validateForm(answer);
 		assertTrue(result.isEmpty());
 	}
 	
 	@Test
 	public void testValidateFormWithErrors(){
 		AnswerDTO answer = new AnswerDTO(null, null);
-		List<String> result = servlet.validateForm(answer);
+		Map<String,String> result = servlet.validateForm(answer);
 		assertFalse(result.isEmpty());
 	}
 
