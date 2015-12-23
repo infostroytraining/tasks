@@ -21,6 +21,8 @@ $(document).ready(function() {
 					data : $("#answer-form").serialize(),
 					success : function(record) {
 						console.log(record);
+						$('span.error').remove();
+						$('.form-group').removeClass('has-error');
 						var name_td = "<td>" + record.name + "</td>" ;
 						var language_td = "<td>" + record.language + "</td>" ;
 						var remove_td = "<td> <a id=" + record.id + " class=\"remove-answer\">remove</a> </td>";
@@ -30,7 +32,6 @@ $(document).ready(function() {
 					},
 					error : function(data) {
 						console.log(data);
-						// var result = JSON.parse(responseJson.responseText);
 						$.each(data.responseJSON, function(key, value) {
 							console.log(key);
 							console.log(value);
@@ -41,22 +42,7 @@ $(document).ready(function() {
 				});
 			});
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+    /*Uncomment to use modal window*/	
 	/*
 		  $('.remove-answer').click(function() { 
 			 var id = $(this).attr('id');
