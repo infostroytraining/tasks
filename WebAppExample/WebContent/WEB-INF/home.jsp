@@ -15,29 +15,29 @@
 	<div class="row">
 		<form id="answer-form" class="form-horizontal">
 			 
-			<div class="form-group <c:if test="${not empty errors.name}">has-error</c:if>">
+			<div id="form-name" class="form-group">
 				<label class="col-sm-1 control-label" for="name" >User name</label>
-				<div class="col-sm-8">
+				<div id="name" class="col-sm-8">
 					<input type="text" id="name" name="name" class="form-control" value="${answer.name}" placeholder="name"/>
-					<c:if test="${not empty errors.name}"><span class="error">${errors.name}</span></c:if>
 			   </div>
 			</div>
 			
-			<div class="form-group <c:if test="${not empty errors.language}">has-error</c:if>">
+			<div id="form-language" class="form-group ">
 				<label class="col-sm-1 control-label" for="language">Language</label>
-				<div class="col-sm-8">
+				<div id="language" class="col-sm-8">
 					<input type="text" id="language" name="language" class="form-control" value="${answer.language}" placeholder="programming language"/>
-					<c:if test="${not empty errors.language}"><span class="error">${errors.language}</span></c:if>
 			   </div>
 			</div>
 			
 			<div class="form-group">
 			 	<div class="col-sm-offset-1 col-sm-8">
-					<input class="btn btn-primary add-answer" type="button" value="Add answer">
+					<input class="btn btn-primary add-answer" type="button"  value="Add answer">
 				</div>
 		    </div>
 		</form>
 </div>
+
+
 	<div class="row">
 	<h4>All answers:</h4>
 		<table id="content" class="table table-bordered">
@@ -50,16 +50,14 @@
 				<tr id="${answer.id}">
 					<td>${answer.name}</td>
 					<td>${answer.language}</td>
-					<td><a id="${answer.id}" class="remove">remove</a>
+					<td> <a id="${answer.id}" class="remove-answer">remove</a> </td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
 </div>
 
-
-
-<!-- Modal HTML 
+<!-- 
     <div id="myModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -77,9 +75,6 @@
             </div>
         </div>
     </div>
- End Modal HTML -->
-}
-
-
+ -->
 </body>
 </html>

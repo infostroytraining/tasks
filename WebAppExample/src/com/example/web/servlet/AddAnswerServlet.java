@@ -34,17 +34,20 @@ public class AddAnswerServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String name = req.getParameter("name");
 		String language = req.getParameter("language");
-		AnswerDTO answer = new AnswerDTO(name, language);
-		Map<String, String> errors = validateForm(answer);
-		resp.setContentType("text/html");
+		AnswerDTO answerDTO = new AnswerDTO(name, language);
+		Map<String, String> errors = validateForm(answerDTO);
 		resp.setCharacterEncoding("UTF-8");
 		try {
 			if (!errors.isEmpty()) {
 				resp.setStatus(400);
+				resp.setHeader("Content-Type", "application/json");
 				resp.getWriter().write(new Gson().toJson(errors));
 			} else {
-				answerService.add(new Answer(name, language));
-				resp.getWriter().write(new Gson().toJson(answerService.getAll()));
+				resp.setStatus(200);
+				Answer answer  = new Answer(name, language);
+				answerService.add(answer);
+				resp.setHeader("Content-Type", "application/json");
+				resp.getWriter().write(new Gson().toJson(answer));
 			}
 		} catch (ServiceException e) {
 			log.error("Exception in servlet", e);
